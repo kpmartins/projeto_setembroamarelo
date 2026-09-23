@@ -14,26 +14,31 @@ function sunflowerSVG(size = 48, stemHeight = 60) {
       }).join('')}
     </g>
     <circle cx="50" cy="70" r="17" fill="#4A3728"/>
-    <circle cx="50" cy="70" r="17" fill="url(#seedPattern)" opacity="0.25"/>
+    <circle cx="50" cy="70" r="13" fill="none" stroke="#6B4E1C" stroke-width="2" stroke-dasharray="2 3"/>
   </svg>`;
 }
 
-function renderNavbar(active) {
+function renderNavbar(active, paths = {}) {
   const el = document.getElementById('navbar-root');
   if (!el) return;
+
+  // Os caminhos são informedos por cada página porque `index.html` fica na
+  // raiz do projeto, enquanto as demais páginas ficam em `setembro-amarelo/htmls/`.
   const links = [
-    { href: 'index.html', label: 'Home' },
-    { href: 'chats.html', label: 'Chats' },
-    { href: 'ajuda.html', label: 'Ajuda' },
+    { key: 'home', href: paths.home || 'index.html', label: 'Home' },
+    { key: 'chats', href: paths.chats || 'chats.html', label: 'Chats' },
+    { key: 'ajuda', href: paths.ajuda || 'ajuda.html', label: 'Ajuda' },
   ];
+  const homeHref = links[0].href;
+
   el.innerHTML = `
     <nav class="navbar">
-      <a href="index.html" class="navbar__brand">
+      <a href="${homeHref}" class="navbar__brand">
         ${sunflowerSVG(28, 0)}
         Setembro Amarelo
       </a>
       <ul class="navbar__links">
-        ${links.map(l => `<li><a href="${l.href}" class="${active === l.href ? 'active' : ''}">${l.label}</a></li>`).join('')}
+        ${links.map((link) => `<li><a href="${link.href}" class="${active === link.key ? 'active' : ''}">${link.label}</a></li>`).join('')}
       </ul>
     </nav>`;
 }
