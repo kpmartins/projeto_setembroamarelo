@@ -5,16 +5,18 @@ real por salas de assunto e localizador de UBS/CAPS por endereço.
 
 ## Estrutura de arquivos
 ```
-setembro-amarelo/
-├── index.html          Home
-├── chats.html           Salas de conversa (chat em tempo real)
-├── ajuda.html            CVV + localizador de UBS/CAPS
-├── css/style.css        Identidade visual
-└── js/
-    ├── common.js          Navbar + faixa fixa do CVV
-    ├── firebase-config.js Credenciais do Firebase (você precisa preencher)
-    ├── chats.js            Lógica do chat em tempo real
-    └── ajuda.js             Lógica do localizador de endereço
+projeto_setembroamarelo/
+├── index.html                         Home
+└── setembro-amarelo/
+    ├── htmls/
+    │   ├── chats.html                  Salas de conversa (chat em tempo real)
+    │   └── ajuda.html                  CVV + localizador de UBS/CAPS
+    ├── css/style.css                   Identidade visual
+    └── js/
+        ├── common.js                   Navbar + faixa fixa do CVV
+        ├── firebase-config.js          Credenciais do Firebase (você precisa preencher)
+        ├── chats.js                     Lógica do chat em tempo real
+        └── ajuda.js                      Lógica do localizador de endereço
 ```
 
 ## Passo 1 — Rodar o site localmente
@@ -23,8 +25,7 @@ direto no navegador (`file://`) — é preciso servir por http. A forma mais
 simples:
 
 ```bash
-cd setembro-amarelo
-python3 -m http.server 8000
+python -m http.server 8000
 ```
 
 Depois abra **http://localhost:8000** no navegador.
@@ -45,7 +46,7 @@ suficiente):
 3. Vá em **Configurações do projeto (ícone de engrenagem) → Geral → Seus apps
    → Web (`</>`)** e registre um app. O Firebase vai te mostrar um objeto
    `firebaseConfig` com `apiKey`, `projectId`, etc.
-4. Copie esses valores para dentro de `js/firebase-config.js`, substituindo os
+4. Copie esses valores para dentro de `setembro-amarelo/js/firebase-config.js`, substituindo os
    textos de exemplo.
 5. Salve, recarregue a página `chats.html` — pronto, as mensagens agora são
    reais e em tempo real (teste abrindo em duas abas ou dois navegadores).
